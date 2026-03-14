@@ -5,8 +5,8 @@ import time
 import ujson
 
 
-ssid = "Pixel 9 Pro"
-password = "Arty7059"
+ssid = "WIFI Name"
+password = "WIFI Password"
 
 # Temperature sensor
 sensor = machine.ADC(4)
