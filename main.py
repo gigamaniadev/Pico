@@ -42,7 +42,7 @@ def html_page():
 <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
 </head>
-<body class="flex justify-center items-center h-screen">
+<body class="flex justify-center items-center h-screen bg-slate-950">
 
 
 <div
@@ -69,7 +69,7 @@ def html_page():
         class="flex items-center gap-1 rounded-full bg-emerald-500/10 px-2 py-1 text-xs font-medium text-emerald-500"
       >
         <span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
-        Live
+        Conected
       </span>
     </div>
 
@@ -79,7 +79,7 @@ def html_page():
       <div class="rounded-lg bg-slate-900/50 p-3">
         <p class="text-xs font-medium text-slate-400">Current Temperature</p>
         <p class="text-lg font-semibold text-white" id="current-temp">-- C</p>
-        <span class="text-xs font-medium text-emerald-500">Status: OK</span>
+        <span class="text-xs font-medium text-emerald-500">Healty: Good :)</span>
       </div>
     </div>
 
@@ -87,22 +87,30 @@ def html_page():
       class="mb-4 h-40 w-full overflow-hidden rounded-lg bg-slate-900/50 p-3"
     >
       <div class="flex h-full w-full items-end justify-between gap-1">
-       <span class="text-red-500">
+        
+         
+       
+       
          <canvas id="chart"></canvas>
-       </span>
+      
+         
+     
+      
+       
      </div>
     </div>
 
     <div class="flex items-center justify-between">
       <div class="flex items-center gap-2">
         <span class="text-xs font-medium text-slate-400">Created By Eydenco</span>
+        
       </div>
     </div>
   </div>
 </div>
 
-<!-- JS -->
 
+<!-- JS -->
 <script>
 let ctx = document.getElementById('chart');
 let chart = new Chart(ctx,{
@@ -111,7 +119,6 @@ data:{labels:[],datasets:[{label:'Temp C',data:[]} ]},
 options:{animation:false,responsive:true,maintainAspectRatio:false}
 });
 
-// Chart
 async function update(){
   let r = await fetch('/data?t=' + Date.now());
   let d = await r.json();
@@ -125,13 +132,18 @@ async function update(){
   if(d.length>0){
     document.getElementById('current-temp').innerText = d[d.length-1] + " C";
   }
+  
 }
+
 setInterval(update,2000);
 </script>
+
 
 </body>
 </html>
 """
+
+
 
 # Server
 addr = socket.getaddrinfo('0.0.0.0',80)[0][-1]
